@@ -6,18 +6,24 @@ data.each do |num|
   end
   data_hash[num] += 1
 end
+
 dif = 0.0
 number = 0
 arr = []
-while number < 500 do
+while number < 10000 do
   dif = 0
   data_hash.each do |key, value|
-    dif += ((key - number).abs * value.to_f)
+    n = (key - number).abs
+    fuel = (n * (n + 1)) / 2
+    dif += fuel * value.to_f
   end
-
+  if number > 0
+    temp = arr.min
+  end
   arr << dif
+  if temp && arr.min > temp
+    number = 100001
+  end
   number += 1
 end
 print arr.min
-
-# answer more than 324
