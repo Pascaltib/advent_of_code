@@ -262,7 +262,7 @@ arr.each do |line|
     end
   end
   config[0] = (hash[7].chars - hash[1].chars)[0]
-  # check letters from 1 missing in 0, 6, or 9
+  # check letters from 1 that are missing in 0, 6, or 9
   if hash["triple"].all? {|digit| digit.include?(hash[1][0])}
     config[2] = hash[1][1]
     config[5] = hash[1][0]
@@ -279,7 +279,7 @@ arr.each do |line|
     config[3] = index1_and_3[0]
     config[1] = index1_and_3[1]
   end
-  # check letter not used in 0, 6, or, 9
+  # check letter not in config yet
   index4_and_6 = []
   alph.each do |char|
     unless config.include? char
