@@ -11,7 +11,6 @@ data = "1224346384
 
 arr = []
 data.each_line{ |line| arr << line.gsub("\n", "").split("").map {|string| string.to_i}}
-
 def recursive_flash_method(args)
 
   to_flash = []
@@ -103,7 +102,9 @@ end
 # code below not working must test one point at a time
 
 flash_total = 0
-100.times do
+running = true
+day = 0
+while running == true do
   initial_flashes = []
   arr.each_with_index do |line, index|
     line.each_with_index do |number, index2|
@@ -120,12 +121,17 @@ flash_total = 0
     flash_total = values[0]
     arr = values[1]
   end
+  all_zero = true
   arr.each_with_index do |line, index|
     line.each_with_index do |number, index2|
       if arr[index][index2] > 9
         arr[index][index2] = 0
+      else
+        all_zero = false
       end
     end
   end
+  running = false if all_zero
+  day += 1
 end
-p flash_total
+p day
