@@ -25,28 +25,16 @@ arr.each do |link|
   end
   data_hash[link[0]] << link[1]
 end
+p data_hash
 
-def recursive_path_search(args)
+# def recursive_path_search(args)
+#   args[:data_hash][args[:current_path][-1]].each do |option|
+#     args[:current_path] << option
 
-  p args[:path_arr]
-  p "this is option: #{args[:option]}"
+#     recursive_path_search({})
+#   end
+# end
 
-  args[:path_arr] << args[:option]
-
-  if args[:option] != "end" && args[:path_arr].length > 2 && args[:path_arr][(args[:path_arr].length-2)] != args[:option]
-    args[:data_hash][args[:option]].each do |option|
-      recursive_path_search({path_arr: args[:path_arr], option: option, data_hash: args[:data_hash]})
-    end
-  else
-    "Path Done"
-  end
-
-
-  return args[:path_arr]
-end
-p data_hash["start"][0]
-p data_hash["start"][1]
-path_arr = []
-data_hash["start"].each do |option|
-  path_arr = recursive_path_search({path_arr: path_arr, option: option, data_hash: data_hash})
-end
+# path_arr = []
+# current_path = ["start"]
+# recursive_path_search({ current_path: current_path, path_arr: path_arr, data_hash: data_hash })
