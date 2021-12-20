@@ -4,7 +4,6 @@ data.each_line do |line|
   arr << line.gsub("\n", '').split('-')
 end
 
-# Create hash with possible paths
 hash = {}
 arr.each do |line|
   # left side
@@ -20,7 +19,6 @@ arr.each do |line|
   hash[line[1]] << line[0] unless line[0] == 'start' || line[1] == 'end'
 end
 p hash
-
 # Node class
 class Node
   attr_accessor :val, :children
@@ -31,16 +29,23 @@ class Node
   end
 end
 
-# Function to declare instances of node
+def find_duplicates(array)
+  hash = {}
+  array.each do |v|
+    hash[v] = (hash[v] || 0 ) + 1
+  end
+  hash.select { |_key, value| value > 1}
+end
+
 def node_declaration(cave, hash, smallcaves)
-  # Add lowercase values to smallcaves array
+  p smallcaves if cave.val == "end"
   smallcaves += [cave.val] if cave.val != cave.val.upcase && cave.val != 'end'
 
   # hash key exists?
   if hash[cave.val]
     hash[cave.val].each do |option|
-      # Stop recursion if repeating small cave
-      next if smallcaves.include? option
+      duplicates = find_duplicates(smallcaves)
+      next if duplicates.length > 1 || (duplicates.values.include? (3))
 
       temp = Node.new(option)
       cave.children << temp
@@ -49,7 +54,6 @@ def node_declaration(cave, hash, smallcaves)
   end
 end
 
-# Function to count instances of end
 def dfs(node, count)
   count += 1 if node.val == 'end'
 

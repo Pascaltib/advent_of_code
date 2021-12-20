@@ -1,28 +1,10 @@
-class Node
-  attr_accessor :val, :children
-
-  def initialize(val)
-    @val = val
-    @children = []
+def find_one_using_hash_map(array)
+  map = {}
+  array.each do |v|
+    map[v] = (map[v] || 0) + 1
   end
-end
-root = Node.new(3)
-child_l = Node.new(9)
-child_r = Node.new(20)
-grand_child_r_l = Node.new(15)
-grand_child_r_r = Node.new(7)
-grand_child_l_l = Node.new(33)
-child_r.children << grand_child_r_l
-child_r.children << grand_child_r_r
-child_l.children << grand_child_l_l
-root.children << child_r
-root.children << child_l
 
-def dfs(node)
-  p node.val
-
-  node.children.each do |child|
-    dfs(child)
-  end
+  map.select { |_key, value| value > 1 }
 end
-dfs(root)
+
+p find_one_using_hash_map([1,2,3,4,5,1]).length
