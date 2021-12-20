@@ -45,7 +45,7 @@ def node_declaration(cave, hash, smallcaves)
   if hash[cave.val]
     hash[cave.val].each do |option|
       duplicates = find_duplicates(smallcaves)
-      next if duplicates.length > 1 || (duplicates.values.include? (3))
+      next if duplicates.length > 1 || (duplicates.values.include? (3)) || option == 'start'
 
       temp = Node.new(option)
       cave.children << temp
