@@ -9,7 +9,7 @@ arr.each do |point|
   max_x = point[0] if point[0] > max_x
   max_y = point[1] if point[1] > max_y
 end
-paper_grid = Array.new(max_y+1){Array.new(max_x+1)}
+paper_grid = Array.new(max_y+1, " "){Array.new(max_x+1, " ")}
 arr.each do |point|
   paper_grid[point[1]][point[0]] = "#"
 end
@@ -52,13 +52,23 @@ def x_fold(paper_grid)
   end
 end
 
-first = x_fold(paper_grid)
-sum = 0
-first.each do |line|
-  line.each do |point|
-    if point
-      sum+= 1
-    end
-  end
-end
-p sum
+test = x_fold(y_fold(paper_grid))
+
+
+# str = ""
+# test.each do |line|
+#   line.each do |point|
+#     str += point
+#   end
+# end
+# p str
+
+final = y_fold(y_fold(y_fold(x_fold(y_fold(x_fold(y_fold(x_fold(y_fold(x_fold(y_fold(x_fold(paper_grid))))))))))))
+p final
+# str = ""
+# final.each do |line|
+#   line.each do |point|
+#     str += point
+#   end
+# end
+# p str
