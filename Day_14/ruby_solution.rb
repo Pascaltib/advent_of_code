@@ -1,7 +1,6 @@
 f = File.open('data.txt')
 template = f.gets.chomp
 insertion_rules = f.read.scan(/(..)(?: -> )(.)/).to_h
-
 pairs = template.chars.each_cons(2).tally
 pairs.default = 0
 
