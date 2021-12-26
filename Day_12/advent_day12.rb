@@ -29,6 +29,10 @@ class Node
     @val = val
     @children = []
   end
+
+  def this.total
+    @total += 1
+  end
 end
 
 # Function to declare instances of node
@@ -62,5 +66,7 @@ end
 root = Node.new('start')
 smallcaves = []
 node_declaration(root, hash, smallcaves)
+
+
 count = 0
 print dfs(root, count)
